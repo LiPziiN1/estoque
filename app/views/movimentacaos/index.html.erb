@@ -1,0 +1,47 @@
+<h1 class="text-center">Movimentação</h1>
+
+
+<div class="media">
+  <div class="">
+    <table class="table table-bordered text-center">
+
+      <thead>
+        <tr>
+          <th class="text-center">Tipo</th>
+          <th class="text-center">Data</th>
+          <th class="text-center">Quantidade</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @movimentacaos.each do |movimentacao| %>
+          <tr>
+            <td><%= movimentacao.tipo %></td>
+            <td><%= movimentacao.data %></td>
+            <td><%= movimentacao.quantidade %></td>
+            <td class="edit"><%= link_to 'visualizar', movimentacao %></td>
+            <td class="edit"><%= link_to 'Editar', edit_movimentacao_path(movimentacao) %></td>
+            <td class="edit"><%= link_to 'Deletar', movimentacao, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>  
+
+<br>
+
+<h3>Importar Movimentação</h3>
+
+
+<%= form_tag import_movimentacaos_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%=  submit_tag "Enviar" %>
+<% end %>
+    
+<br>
+
+<button type="button" class="btn btn-success">
+  <%= link_to 'Novo Cadastro', new_movimentacao_path%>
+</button>
