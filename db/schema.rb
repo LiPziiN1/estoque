@@ -10,12 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_02_174210) do
+ActiveRecord::Schema.define(version: 2021_08_02_221337) do
+
+  create_table "armazems", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "movimentacaos", force: :cascade do |t|
     t.string "tipo"
     t.date "data"
     t.integer "quantidade"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "produto_id"
+    t.integer "armazem_id"
+    t.index ["armazem_id"], name: "index_movimentacaos_on_armazem_id"
+    t.index ["produto_id"], name: "index_movimentacaos_on_produto_id"
+  end
+
+  create_table "produtos", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

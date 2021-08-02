@@ -1,0 +1,2 @@
+class ArmazemsController < ApplicationController
+end
